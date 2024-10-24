@@ -1,0 +1,65 @@
+<div class="container">
+    <div class="secondry_container">
+<h5>Sign Up</h5>
+<mat-form-field>
+    <mat-label>First Name</mat-label>
+    <input
+      matInput
+      placeholder="John"
+      [formControl]="first_name"
+      (blur)="updateErrorMessage()"
+      required
+    />
+</mat-form-field>
+<mat-form-field>
+    <mat-label>Last Name</mat-label>
+    <input
+      matInput
+      placeholder="Wick"
+      [formControl]="last_name"
+      (blur)="updateErrorMessage()"
+      required
+    />
+</mat-form-field>
+
+<mat-form-field>
+    <mat-label>Enter your email</mat-label>
+    <input
+      matInput
+      placeholder="pat@example.com"
+      [formControl]="email"
+      (blur)="updateErrorMessage()"
+      required
+    />
+    @if (email.invalid) {
+      <mat-error>{{errorMessage()}}</mat-error>
+    }
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Enter your password</mat-label>
+    <input matInput [type]="hide() ? 'password' : 'text'" [formControl]="password"/>
+    <button
+      mat-icon-button
+      matSuffix
+      (click)="clickEvent($event)"
+      [attr.aria-label]="'Hide password'"
+      [attr.aria-pressed]="hide()"
+    >
+      <mat-icon>{{hide() ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-label>Confirm password</mat-label>
+    <input matInput type='text' [formControl]="confirm_password"/>
+
+  </mat-form-field>
+  <div style="color: red; display: {{ password_match ? 'none' : 'block' }};">
+    Password doesn't match
+</div>
+  <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+  <div style="display: flex; margin-top: 10px;"><p>Already have an Account? </p><span style="color: blue;"><a href="/login-component" routerLinkActive="active" ariaCurrentWhenActive="page"> Log In</a></span></div>
+
+</div>
+</div>
